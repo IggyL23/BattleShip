@@ -1,7 +1,18 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class PlayerBoard {
+
+
+    public static char[][] createBoardPlayer(int BOARD_SIZE, int SHIP_AMOUNT){
+
+        char[][] gameBoard = new char [BOARD_SIZE][BOARD_SIZE];
+        for (char[] row : gameBoard){
+            Arrays.fill(row, Board.empty);
+        }
+        return shipsPlayer(gameBoard, SHIP_AMOUNT, Board.empty, Board.ship);
+    }
 
     public static char[][] shipsPlayer(char[][] gameBoard, int SHIP_AMOUNT, char empty, char ship){
         int shipsPlaced = 0;
@@ -67,7 +78,16 @@ public class PlayerBoard {
     }
 
     public static int[] getShipCoordsPlayer(int boardSize){
+        int[] coords = new int [2];
 
+        int xCoord = new Scanner(System.in).nextInt();
+        coords[0] = xCoord;
+
+        int yCoord = new Scanner(System.in).nextInt();
+        coords[1] = yCoord;
+
+
+        return coords;
     }
 
 }

@@ -8,9 +8,9 @@ public class MainRunner {
 
 
 
-        char[][] myBoard = Board.createBoard(BOARD_SIZE, SHIP_AMOUNT);
-        Board.printBoard(myBoard);
-        PlayGame.letsPlay(myBoard);
+        char[][] AIBoard = Board.createBoard(BOARD_SIZE, SHIP_AMOUNT);
+        Board.printBoard(AIBoard);
+        PlayGame.letsPlay(AIBoard);
 
 
 
