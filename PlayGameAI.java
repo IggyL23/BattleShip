@@ -1,7 +1,10 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+//contains methods needed to play against computer
 public class PlayGameAI {
 
+    //main method for AI battleship game
     public static void letsPlayAI(char [][] gameBoard1, char[][] gameBoard2){
         boolean[] shipDone = new boolean[5];
 
@@ -15,6 +18,7 @@ public class PlayGameAI {
             int[] guessCoords1;
             char locationView1;
             do{
+                //I use the getShipCoordsAI as it randomly gives me a coordinate which is perfect for this application
                 guessCoords1 = Board.getShipCoordsAI(8);
 
                 locationView1 = PlayGame.guessAndGet(guessCoords1, gameBoard2,pieceArr);
@@ -63,6 +67,7 @@ public class PlayGameAI {
 
     }
 
+    //checks to make sure that the AI doesn't make the same guess
     public static boolean checkIfEmptyAI(int[] location, char[][] gameBoard) {
         Piece[] pieceArr = Board.pieceArray();
         boolean check = true;

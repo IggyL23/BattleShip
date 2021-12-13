@@ -1,9 +1,11 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
+//creates the player board, allows for user to place the ships
 public class PlayerBoard {
 
 
+    //main board creating method
     public static char[][] createBoardPlayer(int BOARD_SIZE, int SHIP_AMOUNT){
 
         char[][] gameBoard = new char [BOARD_SIZE][BOARD_SIZE];
@@ -16,6 +18,7 @@ public class PlayerBoard {
         return shipsPlayer(gameBoard, SHIP_AMOUNT, Board.empty, Board.ship);
     }
 
+    //contains logic to allows the board to be created
     public static char[][] shipsPlayer(char[][] gameBoard, int SHIP_AMOUNT, char empty, char ship){
         int shipsPlaced = 0;
         Piece[] pieceArr = Board.pieceArray();
@@ -61,6 +64,7 @@ public class PlayerBoard {
     }
 
 
+    //similar to getEntireShipAI but takes an extra parameter to know what type of ship it is
     public static int[][] getEntireShipPLayer(int boardSize, int type, int vOrH, char[][] gameBoard) {
         int[] location = getShipCoordsPlayer(boardSize, gameBoard,type);
         Piece[] pieceArr = Board.pieceArray();
@@ -89,6 +93,8 @@ public class PlayerBoard {
         return severalCoords;
     }
 
+    //allows for user to decide where ships are placed, took a while to realize I already had another method that got coordinates
+    //as shown by the commented out code
     public static int[] getShipCoordsPlayer(int boardSize,char[][] gameBoard,int type){
         Piece[] pieceArr = Board.pieceArray();
         System.out.println("Select location for your " + pieceArr[type].name + "(size: " + pieceArr[type].size + ")");

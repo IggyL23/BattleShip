@@ -1,11 +1,13 @@
 import java.util.Scanner;
 
+//this class is the final logic needed for the game to run
 public class FinalLogic {
 
     //pls don't change these
     static int SHIP_AMOUNT = 5;
     static int BOARD_SIZE = 8;
 
+    //allows user to pick between one player and two player then creates the game
     public static void gameTime(){
         int oneOrTwo;
         System.out.println("Welcome to BattleShip!");
@@ -17,7 +19,7 @@ public class FinalLogic {
 
             PlayGame.letsPlay2Player(PlayerBoard1,PlayerBoard2);
         }else if(oneOrTwo == 1){
-            char[][] computerBoard = Board.createBoard(BOARD_SIZE, SHIP_AMOUNT);
+            char[][] computerBoard = Board.createBoardAI(BOARD_SIZE, SHIP_AMOUNT);
             char[][] playerBoard = PlayerBoard.createBoardPlayer(BOARD_SIZE, SHIP_AMOUNT);
 
             PlayGameAI.letsPlayAI(computerBoard,playerBoard);

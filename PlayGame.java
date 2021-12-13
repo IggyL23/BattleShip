@@ -1,7 +1,11 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+
+//main class for playing the game, also contains the final 2 player method
 public class PlayGame {
 
+    //main method for paying 2 player battleship
     public static void letsPlay2Player(char [][] gameBoard1, char [][] gameBoard2){
         boolean[] shipDone = new boolean[5];
 
@@ -65,6 +69,7 @@ public class PlayGame {
 
     }
 
+    //updates the board with the user or AI's input
     public static char[][] updateGameBoard(char[][] gameBoard, int[] guessCoords, char locationView) {
         int row = guessCoords[0];
         int col = guessCoords[1];
@@ -73,6 +78,7 @@ public class PlayGame {
         return gameBoard;
     }
 
+    //grabs the user's or Ai's input and tests to see if a ship was hit
     public static char guessAndGet(int[] guessCoords, char [][] gameBoard,Piece[] pieceArr) {
         String message = null;
         int row = guessCoords[0];
@@ -99,6 +105,7 @@ public class PlayGame {
         return target;
     }
 
+    //checks if a ship was sunk, if so it returns that information to the user
     public static void checkIfSunk(char[][] gameBoard,Piece[] pieceArr,boolean[] shipDone){
 
 
@@ -131,6 +138,8 @@ public class PlayGame {
 
     }
 
+    //used to get user input
+    //modular as it used both to get user input for placing ships and guesses
     public static int[] getUserCoords(){
         int row = 0;
         int col;
@@ -141,7 +150,7 @@ public class PlayGame {
             charCol = Character.toUpperCase(charCol);
             col = charCol-64;
             //col = new Scanner(System.in).nextInt();
-        }while (col < 0 || col > MainRunner.BOARD_SIZE + 1);
+        }while (col < 0 || col > FinalLogic.BOARD_SIZE + 1);
 
         do{
             System.out.print("Column: ");
@@ -154,7 +163,7 @@ public class PlayGame {
                 row = 10;
             }
 
-        }while(row < 0 || row > MainRunner.BOARD_SIZE + 1);
+        }while(row < 0 || row > FinalLogic.BOARD_SIZE + 1);
 
         return new int[]{col-1, row - 1};
     }

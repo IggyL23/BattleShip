@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Random;
 
+//this class contains all board methods (mostly AI methods)
 public class Board {
     static char empty = '-';
     static char ship = 's';
@@ -8,7 +9,7 @@ public class Board {
     static char miss = 'O';
     static int REDIX = 18;
 
-
+    //creates an array of "pieces" from piece class to facilitate calling them later
     public static Piece[] pieceArray() {
         Piece[] PieceArr = new Piece[5];
         for (int i = 0; i < 5; i++) {
@@ -17,7 +18,8 @@ public class Board {
         return PieceArr;
     }
 
-    public static char[][] createBoard(int BOARD_SIZE, int SHIP_AMOUNT) {
+    //main method for creating the AI board
+    public static char[][] createBoardAI(int BOARD_SIZE, int SHIP_AMOUNT) {
 
         char[][] gameBoard = new char[BOARD_SIZE][BOARD_SIZE];
         for (char[] row : gameBoard) {
@@ -26,6 +28,7 @@ public class Board {
         return shipsAI(gameBoard, SHIP_AMOUNT, empty, ship);
     }
 
+    //contains the logic to create the board which is then given to createBoardAI
     public static char[][] shipsAI(char[][] gameBoard, int SHIP_AMOUNT, char empty, char ship) {
         int shipsPlaced = 0;
         int boardSize = gameBoard.length;
@@ -61,10 +64,11 @@ public class Board {
                 s--;
             }
         }
-        //This is a change
+
         return gameBoard;
     }
 
+    //gets a random coordinate which is then given to getEntireShipAI to be created into a full ship
     public static int[] getShipCoordsAI(int boardSize) {
         int[] coords = new int[2];
         for (int i = 0; i < coords.length; i++) {
@@ -75,6 +79,7 @@ public class Board {
         return coords;
     }
 
+    //gets the entire ship coordinates for an AI ship, this means it is the length of the ship type and not just one coordinate
     public static int[][] getEntireShipAI(int boardSize, int type, int vOrH) {
         int[] location = getShipCoordsAI(boardSize);
         Piece[] pieceArr = pieceArray();
@@ -99,6 +104,7 @@ public class Board {
         return severalCoords;
     }
 
+    //checks if the coordinates given are in the board and do not intersect with other previously created ships
     public static boolean checkIfEmpty(int[][] location, char[][] gameBoard, int s) {
         Piece[] pieceArr = pieceArray();
         int shipLength = pieceArr[s].size;
@@ -122,6 +128,7 @@ public class Board {
         return check;
     }
 
+    //prints the board displaying the ships, this was very useful in testing
     public static void printBoard(char[][] gameBoard) {
         Piece[] pieceArr = pieceArray();
         int boardSize = gameBoard.length;
@@ -172,6 +179,7 @@ public class Board {
 
     }
 
+    //prints the board without ships showing so that the game can be played
     public static void printBoardHidden(char[][] gameBoard) {
         Piece[] pieceArr = pieceArray();
         int boardSize = gameBoard.length;
@@ -212,12 +220,14 @@ public class Board {
 
     }
 
+    //clears the console to make it easier to read and less crowded
     public static void clearConsole() {
         for (int i = 0; i < 50; i++ ){
             System.out.println("\n");
         }
     }
 
+    //taken from the internet, simply allows the user to press enter to continue
     public static void pressEnterToContinue()
     {
         System.out.println("Press Enter key to continue...");

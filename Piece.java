@@ -1,3 +1,5 @@
+
+//piece class, allows for ships to ahve types and attributes
 public class Piece {
     int type;
     int size;
@@ -8,6 +10,7 @@ public class Piece {
 
 
 
+    //piece constructor, automatically assigns attributes based on ship type
     public Piece(int type){
         this.type = type;
         /*this.size =size;

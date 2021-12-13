@@ -14,8 +14,8 @@ public class TestRunner {
         //char[][] PlayerBoard1 = PlayerBoard.createBoardPlayer(BOARD_SIZE, SHIP_AMOUNT);
         //char[][] PlayerBoard2 = PlayerBoard.createBoardPlayer(BOARD_SIZE, SHIP_AMOUNT);
 
-        char[][] PlayerBoard1 = Board.createBoard(BOARD_SIZE, SHIP_AMOUNT);
-        char[][] PlayerBoard2 = Board.createBoard(BOARD_SIZE, SHIP_AMOUNT);
+        char[][] PlayerBoard1 = Board.createBoardAI(BOARD_SIZE, SHIP_AMOUNT);
+        char[][] PlayerBoard2 = Board.createBoardAI(BOARD_SIZE, SHIP_AMOUNT);
 
         Board.printBoard(PlayerBoard1);
         Board.printBoard(PlayerBoard2);
