@@ -5,12 +5,11 @@ public class MainRunner {
 
 
 
+        //the coment
 
 
+        FinalLogic.gameTime();
 
-        char[][] AIBoard = Board.createBoard(BOARD_SIZE, SHIP_AMOUNT);
-        Board.printBoard(AIBoard);
-        PlayGame.letsPlay(AIBoard);
 
 
 

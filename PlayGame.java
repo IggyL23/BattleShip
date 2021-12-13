@@ -2,25 +2,67 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class PlayGame {
 
-    public static void letsPlay(char [][] gameBoard){
+    public static void letsPlay2Player(char [][] gameBoard1, char [][] gameBoard2){
         boolean[] shipDone = new boolean[5];
 
 
-        int undetectedShipNum = 17;
+        int aliveShips1 = 17;
+        int aliveShips2 = 17;
+
         Piece[] pieceArr = Board.pieceArray();
-        while(undetectedShipNum > 0){
-            int[] guessCoords = getUserCoords();
-            char locationView = guessAndGet(guessCoords, gameBoard,pieceArr);
-            if (locationView == Board.hit){
-                undetectedShipNum--;
+        while(aliveShips1 > 0 || aliveShips2 > 0){
+            //player 1
+            System.out.println("Player 1 turn:");
+            System.out.println("\nYour board :");
+            Board.printBoard(gameBoard1);
+            System.out.println("\nEnemy Board: ");
+            Board.printBoardHidden(gameBoard2);
+            System.out.println();
+
+            int[] guessCoords1 = getUserCoords();
+            char locationView1 = guessAndGet(guessCoords1, gameBoard2,pieceArr);
+            if (locationView1 == Board.hit){
+                aliveShips1--;
             }
-            gameBoard = updateGameBoard(gameBoard, guessCoords, locationView);
-            checkIfSunk(gameBoard,pieceArr,shipDone);
-            Board.printBoard(gameBoard);
+            gameBoard2 = updateGameBoard(gameBoard2, guessCoords1, locationView1);
+            checkIfSunk(gameBoard2,pieceArr,shipDone);
+            System.out.println("\nEnemy Board: ");
+            Board.printBoardHidden(gameBoard2);
+            Board.pressEnterToContinue();
+            Board.clearConsole();
+
+            //player 2
+            System.out.println("Player 2 turn:");
+            System.out.println("\nYour board :");
+            Board.printBoard(gameBoard2);
+            System.out.println("\nEnemy Board: ");
+            Board.printBoardHidden(gameBoard1);
+            System.out.println();
+
+            int[] guessCoords2 = getUserCoords();
+            char locationView2 = guessAndGet(guessCoords2, gameBoard1,pieceArr);
+            if (locationView2 == Board.hit){
+                aliveShips2--;
+            }
+            gameBoard1 = updateGameBoard(gameBoard1, guessCoords2, locationView1);
+            checkIfSunk(gameBoard1,pieceArr,shipDone);
+            System.out.println("\nEnemy Board: ");
+            Board.printBoardHidden(gameBoard1);
+            Board.pressEnterToContinue();
+            Board.clearConsole();
 
 
         }
-        System.out.println("Player wins");
+        if(aliveShips1 == 0){
+            System.out.println("Player1 wins");
+        }else if(aliveShips2 == 0){
+            System.out.println("Player2 wins");
+        }else{
+            System.out.println("Draw?? is that even possible?");
+        }
+
+
+
     }
 
     public static char[][] updateGameBoard(char[][] gameBoard, int[] guessCoords, char locationView) {
@@ -31,7 +73,7 @@ public class PlayGame {
         return gameBoard;
     }
 
-    private static char guessAndGet(int[] guessCoords, char [][] gameBoard,Piece[] pieceArr) {
+    public static char guessAndGet(int[] guessCoords, char [][] gameBoard,Piece[] pieceArr) {
         String message = null;
         int row = guessCoords[0];
         int col = guessCoords[1];
@@ -119,4 +161,5 @@ public class PlayGame {
 
 
 }
+
 
