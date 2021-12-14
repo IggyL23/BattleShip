@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 //creates the player board, allows for user to place the ships
 public class PlayerBoard {
@@ -24,10 +25,23 @@ public class PlayerBoard {
         Piece[] pieceArr = Board.pieceArray();
         int boardSize = gameBoard.length;
         Board.printBoard(gameBoard);
-        for(int s = 0; s < 5; s++){
+      //Nick: this block of code asks the user if they're sure about their board, and removes it from the console, if not, the board process is reset.
+      String finalInput;
+          
+                    for(int s = 0; s < 5; s++){
             System.out.println(pieceArr[s].name + ", size: " + pieceArr[s].size + ", symbol: " +"'" +pieceArr[s].charName + "'");
             System.out.println("Press 0 for horizontal, or 1 for vertical");
-            int VOrH = new Scanner(System.in).nextInt();
+          int VOrH;
+          //Nick: makes sure the input is within bounds
+          do{
+            System.out.println("Make sure input is 0 or 1");
+            try{
+              VOrH = new Scanner(System.in).nextInt();
+            }catch(InputMismatchException ime){
+              VOrH = 2;
+            }
+          }while(VOrH<0||VOrH>1);
+            
             int[][] severalLocations = getEntireShipPLayer(boardSize,s,VOrH, gameBoard);
             int shipLength = pieceArr[s].size;
 
@@ -55,11 +69,11 @@ public class PlayerBoard {
                 shipsPlaced++;
 
 
-            }else{
-                s--;
-                System.out.println("A ship is already there");
-            }
-        }
+            
+          
+              }}
+            
+      
         return gameBoard;
     }
 
@@ -119,5 +133,4 @@ public class PlayerBoard {
     }
 
 }
-
 

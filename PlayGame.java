@@ -145,15 +145,16 @@ public class PlayGame {
         int col;
         char charCol;
         do {
-            System.out.print("Row: ");
+            System.out.print("Row (A-H): ");
             charCol = new Scanner(System.in).next().charAt(0);
+          
             charCol = Character.toUpperCase(charCol);
             col = charCol-64;
             //col = new Scanner(System.in).nextInt();
         }while (col < 0 || col > FinalLogic.BOARD_SIZE + 1);
 
         do{
-            System.out.print("Column: ");
+            System.out.print("Column (1-8): ");
             Scanner sc = new Scanner(System.in);
 
             try{
@@ -170,5 +171,3 @@ public class PlayGame {
 
 
 }
-
-

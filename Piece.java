@@ -1,4 +1,3 @@
-
 //piece class, allows for ships to ahve types and attributes
 public class Piece {
     int type;
